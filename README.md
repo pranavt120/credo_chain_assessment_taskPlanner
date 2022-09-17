@@ -8,7 +8,7 @@ README
 	* Create a database named  = "taskPlanner" with one collection named = "task"
 		in mongodb.
     
-    ![image](https://user-images.githubusercontent.com/43287929/190868483-27a425c1-9eb3-4bc8-bf70-d1d883b845ee.png)
+ ![image](https://user-images.githubusercontent.com/43287929/190868483-27a425c1-9eb3-4bc8-bf70-d1d883b845ee.png)
     
     
 -> Import this project as a maven project and import all the dependencies in the pom.xml file.
