@@ -1,0 +1,13 @@
+package com.taskplaner.repository;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.taskplaner.entities.History;
+
+public interface HistoryRepository extends MongoRepository<History, String>{
+
+	
+	List<History> findAllByTaskId(String id);
+}

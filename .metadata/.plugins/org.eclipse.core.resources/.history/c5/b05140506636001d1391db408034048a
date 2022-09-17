@@ -1,0 +1,5 @@
+package com.taskplaner.repository;
+
+public interface taskRepository {
+
+}

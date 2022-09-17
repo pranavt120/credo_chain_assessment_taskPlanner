@@ -1,0 +1,106 @@
+package com.taskplaner.service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.taskplaner.dao.TaskDao;
+import com.taskplaner.entities.History;
+import com.taskplaner.entities.TaskEntity;
+import com.taskplaner.repository.HistoryRepository;
+import com.taskplaner.repository.taskRepository;
+
+public class TasksServiceImpl implements TasksService {
+	
+	
+	@Autowired
+	taskRepository repository;
+	
+	@Autowired
+	HistoryRepository historyRepo;
+
+	
+	public TaskEntity createTask(TaskEntity task) {
+		
+		
+		task.setStatus("CREATED");
+		
+		TaskEntity saved = repository.save(task);
+		this.updateHistoryTable(task);
+		
+		return saved;
+	}
+
+
+	public TaskEntity updateTask(TaskEntity oldTask, TaskEntity newTask) {
+		
+		oldTask.setTitle(newTask.getTitle());
+		oldTask.setDescription(newTask.getDescription());
+		oldTask.setAssignedTo(newTask.getAssignedTo());
+		oldTask.setStatus(newTask.getStatus());
+		
+		TaskEntity updatedTask = repository.save(oldTask);
+				
+		this.updateHistoryTable(updatedTask);
+		return repository.save(updatedTask);
+	}
+
+
+	public TaskEntity assignTask(TaskEntity task, String assignedTo) {
+		task.setAssignedTo(assignedTo);
+		TaskEntity updatedTask = repository.save(task);
+		this.updateHistoryTable(updatedTask);
+		
+		return updatedTask;
+	}
+
+
+	public List<TaskEntity> searchTaskName(String name) {
+		List<TaskEntity> titles = repository.findByTitle(name);
+		
+		if(titles.size() > 0) {
+			return titles;
+		}
+		return null;
+	}
+	
+	public TaskEntity searchTaskId(String id) {
+		Optional<TaskEntity> task = repository.findById(id);
+		
+		if(task.isPresent()) {
+			return task.get();
+		}
+		
+		return null;
+	}
+
+	
+	public List<History> history(String id) {
+		
+		List<History> historyList = historyRepo.findAllByTask_id(id);
+		
+		return historyList;
+	}
+
+
+	public History updateHistoryTable(TaskEntity task) {
+		History record = new History();
+		record.setTask_id(task.getId());
+		if(task.getStatus() == null) {
+			record.setStatus("CREATED");
+		}else {
+			record.setStatus(task.getStatus());
+		}
+		record.setDescription(task.getDescription());
+		record.setTitle(task.getTitle());
+		record.setUpdatedOn(new Date());
+		
+		return historyRepo.save(record);
+	}
+
+
+	
+
+}

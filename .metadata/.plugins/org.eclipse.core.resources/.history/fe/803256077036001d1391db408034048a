@@ -1,0 +1,23 @@
+package com.taskplaner.utils;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.taskplaner.dao.TaskDao;
+import com.taskplaner.entities.TaskEntity;
+
+public class TaskMapper {
+	
+	@Autowired
+	ModelMapper mapper;
+	
+	
+	public TaskEntity mapToEntity(TaskDao dao) {
+		
+	}
+	
+	public TaskDao mapToDao(TaskEntity entity) {
+		
+	}
+
+}

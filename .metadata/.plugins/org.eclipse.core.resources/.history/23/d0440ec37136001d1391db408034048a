@@ -1,0 +1,50 @@
+package com.taskplaner.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.taskplaner.dao.TaskDao;
+import com.taskplaner.entities.History;
+import com.taskplaner.entities.TaskEntity;
+import com.taskplaner.repository.taskRepository;
+
+public class TasksServiceImpl implements TasksService {
+	
+	
+	@Autowired
+	taskRepository repository;
+
+	
+	public TaskEntity createTask(TaskEntity task) {
+		
+		return repository.save(task);
+	}
+
+
+	public void updateTask() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+	}
+
+
+	public void assignTask() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+	}
+
+
+	public List<TaskDao> searchTask() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+		return null;
+	}
+
+	@Override
+	public List<History> history() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+		return null;
+	}
+
+}

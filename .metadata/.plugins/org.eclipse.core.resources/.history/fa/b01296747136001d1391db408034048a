@@ -1,0 +1,5 @@
+package com.taskplaner.entities;
+
+public class History {
+
+}

@@ -1,0 +1,5 @@
+package com.taskplaner.service;
+
+public interface Tasks {
+
+}

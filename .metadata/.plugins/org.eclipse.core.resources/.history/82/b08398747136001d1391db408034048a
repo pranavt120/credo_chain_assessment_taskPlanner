@@ -1,0 +1,18 @@
+package com.taskplaner.service;
+
+import java.util.List;
+
+import com.taskplaner.dao.TaskDao;
+import com.taskplaner.entities.History;
+
+public interface TasksService {
+	
+	void createTask();
+	void updateTask();
+	void assignTask();
+	List<TaskDao> searchTask();
+	
+	List<History> history();
+	
+
+}

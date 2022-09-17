@@ -1,0 +1,81 @@
+package com.taskplaner.service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.taskplaner.dao.TaskDao;
+import com.taskplaner.entities.History;
+import com.taskplaner.entities.TaskEntity;
+import com.taskplaner.repository.HistoryRepository;
+import com.taskplaner.repository.taskRepository;
+
+public class TasksServiceImpl implements TasksService {
+	
+	
+	@Autowired
+	taskRepository repository;
+	
+	@Autowired
+	HistoryRepository historyRepo;
+
+	
+	public TaskEntity createTask(TaskEntity task) {
+		
+		TaskEntity saved = repository.save(task);
+		
+		History record = new History();
+		record.setTask_id(saved.getId());
+		System.out.println(record.getTask_id());
+		record.setStatus("CREATED");
+		record.setUpdatedOn(new Date());
+		
+		historyRepo.save(record);
+		return saved;
+	}
+
+
+	public void updateTask() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+	}
+
+
+	public void assignTask() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+	}
+
+
+	public List<TaskEntity> searchTaskName(String name) {
+		List<TaskEntity> titles = repository.findByTitle(name);
+		
+		if(titles.size() > 0) {
+			return titles;
+		}
+		return null;
+	}
+	
+	public TaskEntity searchTaskId(String id) {
+		Optional<TaskEntity> task = repository.findById(id);
+		
+		if(task.isPresent()) {
+			return task.get();
+		}
+		
+		return null;
+	}
+
+	
+	public List<History> history() {
+		// TODO Auto-generated method stub
+		System.out.println("");
+		return null;
+	}
+
+
+	
+
+}

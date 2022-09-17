@@ -1,0 +1,9 @@
+package com.taskplaner.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.taskplaner.entities.TaskEntity;
+
+public interface taskRepository extends MongoRepository<TaskEntity, String>{
+
+}
