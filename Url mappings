@@ -1,0 +1,44 @@
+# Create Task :
+
+  http://localhost:8080/task/create
+  Body - {
+          "title": "Develop Apis for Onprem 5102 workflow ",
+          "description": "After Debugging gather all the required information to develop api for 5102 workflow",
+          "createdBy": "Bryan Smith"  
+          }
+          
+          
+# Assign Task:
+  http://localhost:8080/task/assign/{id}/{name to assign}
+  example =  http://localhost:8080/task/assign/6325fb7beb48bd598b67d9d4/Pranav Takkar
+
+
+#Update Task:
+  http://localhost:8080/task/update/{id}
+   example =  http://localhost:8080/task/update/6325fe05eb48bd598b67d9dc
+  Body   -  {
+          "title": "Develop Apis for Onprem 5102 workflow ",
+          "description": "After Debugging gather all the required information to develop api for 5102 workflow",
+          "createdBy": "Bryan Smith",
+          "assignedTo": "Robin",
+          "status": "PENDING",
+          "completedOn": null
+      }
+      
+      
+# Search Task 
+ -> With name
+    http://localhost:8080/task/search/name?name={any thing in title}
+     example =  http://localhost:8080/task/search/name?name=debug
+     
+  -> With Id
+    http://localhost:8080/task/search/id/{id}
+    http://localhost:8080/task/search/id/6325fe05eb48bd598b67d9dc
+    
+    
+    
+    
+    
+# Get History of a Particular Task
+  http://localhost:8080/task/history/{id}
+  example = http://localhost:8080/task/history/6325fd81eb48bd598b67d9d8
